@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PokéClassifier API Documentation</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@2.5.2/dist/flowbite.min.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="static/styles/docs.css">
+</head>
+<body class="bg-red-100">
+    <main class="container mx-auto px-4 py-12 max-w-4xl">        
+        <div class="text-center mb-12">
+            <h1 class="text-5xl font-bold text-yellow-400 mb-4 font-[Pokemon] tracking-wide drop-shadow-[0_2px_2px_rgba(0,0,0,0.8)]">
+                WHO'S THAT POKÉMON API
+            </h1>
+            <p class="text-xl text-gray-700 mb-8">Comprehensive documentation for the Pokémon classification API</p>
+            
+            <div class="flex justify-center gap-4 mb-8">
+                <a href="/" class="bg-blue-500 hover:bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold transition-all">
+                    Back to Home
+                </a>
+            </div>
+        </div>
+
+        <div class="bg-yellow-100 p-4 rounded-lg mb-8">
+            <h3 class="text-lg font-semibold mb-2">⚠️ No Authentication Required</h3>
+            <p class="text-gray-700">All endpoints are publicly available and require no API keys or authentication.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+            <h2 class="text-2xl font-bold mb-4">Base URL</h2>
+            <code class="text-lg">https://whoisthatpokemon.hershey-harsh.hackclub.app/</code>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm mb-8">
+            <h2 class="text-2xl font-bold mb-4">Getting Started</h2>
+            <p class="text-gray-600 mb-4">All responses are JSON formatted. Example request:</p>
+            <pre><code>fetch('/api/v1/pokemon/pikachu')
+      .then(response => response.json())
+      .then(data => console.log(data));</code></pre>
+        </div>
+
+        <div class="space-y-8">
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm">POST</span>
+                    <h2 class="text-2xl font-bold">/predict/url</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Predict Pokémon from image URL</p>
+                
+                <h3 class="font-semibold mb-2">Request Body (JSON):</h3>
+                <pre><code>{
+    "url": "string (required)"
+}</code></pre>
+
+                <h3 class="font-semibold mt-4 mb-2">Example Response:</h3>
+                <pre><code>{
+    "name": "charizard",
+    "dex_number": 6,
+    "description": "A fiery dragon Pokémon...",
+    "types": ["fire", "flying"],
+    "predictions": [
+        {"name": "charizard", "confidence": 0.95},
+        {"name": "dragonite", "confidence": 0.03},
+        {"name": "salamence", "confidence": 0.02}
+    ]
+}</code></pre>
+            </div>
+
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-green-100 text-green-800 rounded-lg text-sm">POST</span>
+                    <h2 class="text-2xl font-bold">/predict/upload</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Predict Pokémon from image upload</p>
+                
+                <h3 class="font-semibold mb-2">Request Format:</h3>
+                <p class="text-gray-600 mb-4">Form-data with file upload (key: <code>file</code>)</p>
+
+                <h3 class="font-semibold mb-2">cURL Example:</h3>
+                <pre><code>curl -X POST -F "file=@pokemon.jpg" http://your-domain.com/predict/upload</code></pre>
+                
+                <h3 class="font-semibold mt-4 mb-2">Example Response:</h3>
+                <pre><code>{
+    "name": "charizard",
+    "dex_number": 6,
+    "description": "A fiery dragon Pokémon...",
+    "types": ["fire", "flying"],
+    "predictions": [
+        {"name": "charizard", "confidence": 0.95},
+        {"name": "dragonite", "confidence": 0.03},
+        {"name": "salamence", "confidence": 0.02}
+    ]
+}</code></pre>
+            </div>
+
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-lg text-sm">GET</span>
+                    <h2 class="text-2xl font-bold">/pokemon/{name}</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Get detailed Pokémon information</p>
+
+                <h3 class="font-semibold mb-2">Example Response:</h3>
+                <pre><code>{
+    "name": "pikachu",
+    "dex_number": 25,
+    "description": "When several of these Pokémon gather...",
+    "types": ["electric"],
+    "height": 0.4,
+    "weight": 6.0,
+    "base_stats": {
+        "hp": 35,
+        "attack": 55,
+        "defense": 40,
+        "special_attack": 50,
+        "special_defense": 50,
+        "speed": 90
+    },
+    "image_url": "https://.../pikachu.png"
+}</code></pre>
+            </div>
+
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-lg text-sm">GET</span>
+                    <h2 class="text-2xl font-bold">/pokemon/type/{type}</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Get Pokémon by type</p>
+                
+                <h3 class="font-semibold mb-2">Example Response:</h3>
+                <pre><code>[
+            {
+                "name": "charizard",
+                "types": ["fire", "flying"],
+                ...
+            },
+            ...
+        ]</code></pre>
+            </div>
+
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-lg text-sm">GET</span>
+                    <h2 class="text-2xl font-bold">/pokemon/{name}/evolutions</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Get evolution chain for Pokémon</p>
+
+                <h3 class="font-semibold mb-2">Example Response:</h3>
+                <pre><code>{
+    "from": null,
+    "to": [
+        {
+            "target": "raichu",
+            "trigger": "Use Thunder Stone"
+        }
+    ]
+}</code></pre>
+            </div>
+
+            <div class="endpoint-card bg-white p-6 rounded-xl shadow-sm">
+                <div class="flex items-center gap-2 mb-4">
+                    <span class="px-3 py-1 bg-blue-100 text-blue-800 rounded-lg text-sm">GET</span>
+                    <h2 class="text-2xl font-bold">/random</h2>
+                </div>
+                <p class="text-gray-600 mb-6">Get random Pokémon data</p>
+            </div>
+
+            <div class="bg-red-50 p-6 rounded-xl">
+                <h2 class="text-2xl font-bold mb-4">Error Responses</h2>
+                <div class="space-y-4">
+                    <div>
+                        <code class="bg-red-100 text-red-800 px-2 py-1 rounded">400 Bad Request</code>
+                        <p class="text-gray-600 mt-2">Invalid request format or missing parameters</p>
+                    </div>
+                    <div>
+                        <code class="bg-red-100 text-red-800 px-2 py-1 rounded">404 Not Found</code>
+                        <p class="text-gray-600 mt-2">Pokémon not found in database</p>
+                    </div>
+                    <div>
+                        <code class="bg-red-100 text-red-800 px-2 py-1 rounded">500 Internal Server Error</code>
+                        <p class="text-gray-600 mt-2">Server-side processing error</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-blue-50 p-6 rounded-xl mt-8">
+            <h2 class="text-2xl font-bold mb-4">📈 Rate Limits</h2>
+            <p class="text-gray-700">
+                Public API rate limits: <br>
+                <code>100 requests/minute</code> per IP address
+            </p>
+        </div>
+    </main>
+
+    <script src="static/js/docs.js"></script>
+</body>
+</html>

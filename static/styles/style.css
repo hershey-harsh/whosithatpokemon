@@ -1,0 +1,49 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('https://fonts.cdnfonts.com/s/17890/Pokemon Solid.woff') format('woff');
+}
+
+.drop-zone {
+    transition: all 0.3s ease;
+}
+
+.drop-zone.drag-over {
+    background-color: #fef2f2;
+    border-color: #ef4444;
+}
+
+.loading-bar {
+    height: 4px;
+    width: 0%;
+    background-color: #3b82f6;
+    transition: width 0.3s ease;
+}
+
+.confidence-bar {
+    height: 24px;
+    transition: width 0.5s ease;
+}
+
+.pokemon-deco {
+    position: fixed;
+    opacity: 0.1;
+    z-index: 1;
+    pointer-events: none;
+    animation: float 6s ease-in-out infinite;
+}
+
+main {
+    position: relative;
+    z-index: 2;
+}
+
+#result-section {
+    background: white;
+    position: relative;
+    z-index: 3;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}

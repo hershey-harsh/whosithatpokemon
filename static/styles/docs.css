@@ -1,0 +1,27 @@
+@font-face {
+    font-family: 'Pokemon';
+    src: url('https://fonts.cdnfonts.com/s/17890/Pokemon Solid.woff') format('woff');
+}
+
+.endpoint-card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.endpoint-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+}
+
+code {
+    background-color: #f3f4f6;
+    padding: 2px 4px;
+    border-radius: 4px;
+    font-family: Monaco, monospace;
+}
+
+pre {
+    background-color: #f3f4f6;
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+}
