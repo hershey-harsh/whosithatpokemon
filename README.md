@@ -6,4 +6,4 @@ All you have to do is upload a picture of an Pokémon and it will be identified 
 
 # API
 View how to make calls here:
-https://whoisthatpokemon.hershey-harsh.hackclub.app/docs
+https://whosthatpokemon.hershey-harsh.hackclub.app/docs
